@@ -45,7 +45,7 @@ router.post(
 );
 
 //@route    GET api/products
-//@desc     GET a product
+//@desc     GET products
 
 router.get('/', async (req, res) => {
   try {
@@ -58,7 +58,7 @@ router.get('/', async (req, res) => {
 });
 
 //@route    GET api/products
-//@desc     Get a product by is name
+//@desc     Get a product by id
 
 router.get('/product/:product_id', async (req, res) => {
   const id = req.params.product_id;

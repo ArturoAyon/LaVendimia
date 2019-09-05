@@ -10,7 +10,7 @@ app.use(express.json({ extended: false }));
 app.get('/', (req, res) => res.send('API Running'));
 
 //Define Routes
-//app.use('/api/clients', require('./routes/api/clients'));
+app.use('/api/clients', require('./routes/api/clients'));
 app.use('/api/products', require('./routes/api/products'));
 //app.use('/api/config', require('./routes/api/config'));
 
