@@ -12,9 +12,10 @@ app.get('/', (req, res) => res.send('API Running'));
 //Define Routes
 app.use('/api/clients', require('./routes/api/clients'));
 app.use('/api/products', require('./routes/api/products'));
+app.use('/api/configurations', require('./routes/api/configurations'));
 
 //app.use('/api/config', require('./routes/api/config'));
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
   res.header(
     'Access-Control-Allow-Headers',
@@ -22,6 +23,7 @@ app.use(function(req, res, next) {
   );
   next();
 });
+*/
 
 const PORT = process.env.PORT || 5000;
 
