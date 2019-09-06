@@ -9,6 +9,7 @@ import ClientList from './components/clients/ClientList';
 import ClientForm from './components/clients/ClientForm';
 import ProductUpdate from './components/products/ProductUpdate';
 import ClientUpdate from './components/clients/ClientUpdate';
+import ConfigurationForm from './components/configurations/ConfigurationForm';
 
 const App = () => (
   <Router>
@@ -17,6 +18,12 @@ const App = () => (
       <Route exact path='/' component={Landing} />
       <section className='container'>
         <Switch>
+          <Route exact path='/configuracion' component={ConfigurationForm} />
+          <Route
+            exact
+            path='/configuracion/form'
+            component={ConfigurationForm}
+          />
           <Route exact path='/productos/form' component={ProductForm} />
           <Route exact path='/productos' component={ProductList} />
           <Route exact path='/clientes/form' component={ClientForm} />
