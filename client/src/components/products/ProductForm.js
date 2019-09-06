@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import axios from 'axios';
 
-const ProductForm = () => {
+function ProductForm(props) {
   const [formData, setFormData] = useState({
     description: '',
     model: '',
@@ -17,7 +17,7 @@ const ProductForm = () => {
   const onReset = e => {
     e.preventDefault();
     var r = window.confirm('¿Seguro que quieres cancelar?');
-    if (r) return console.log('cancelado');
+    if (r) return props.history.push('/productos');
   };
 
   const onSubmit = async e => {
@@ -31,7 +31,8 @@ const ProductForm = () => {
       const body = JSON.stringify(formData);
 
       const res = await axios.post('/api/products', body, config);
-      console.log(res.data);
+      alert('Articulo registrado con exito');
+      props.history.push('/productos');
     } catch (err) {
       console.error(err.response.data);
     }
@@ -94,6 +95,6 @@ const ProductForm = () => {
       </form>
     </Fragment>
   );
-};
+}
 
 export default ProductForm;

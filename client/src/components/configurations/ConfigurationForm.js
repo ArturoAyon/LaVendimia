@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const ConfigurationForm = () => {
+const ConfigurationForm = props => {
   const [formData, setFormData] = useState({
     financeRate: '',
     deposit: '',
@@ -17,7 +17,9 @@ const ConfigurationForm = () => {
   const onReset = e => {
     e.preventDefault();
     var r = window.confirm('¿Seguro que quieres cancelar?');
-    if (r) return console.log('cancelado');
+    if (r) {
+      return props.history.push('/');
+    }
   };
 
   const onSubmit = async e => {
@@ -31,7 +33,8 @@ const ConfigurationForm = () => {
       const body = JSON.stringify(formData);
 
       const res = await axios.post('/api/configurations', body, config);
-      console.log(res.data);
+      alert('Configuracion guardada con exito');
+      props.history.push('/');
     } catch (err) {
       console.error(err.response.data);
     }
@@ -77,7 +80,7 @@ const ConfigurationForm = () => {
           />
         </div>
 
-        <input type='submit' className='btn btn-primary' value='Cancelar' />
+        <input type='reset' className='btn btn-primary' value='Cancelar' />
 
         <input type='submit' className='btn btn-primary' value='Guardar' />
       </form>

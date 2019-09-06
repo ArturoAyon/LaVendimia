@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import axios from 'axios';
 
-const ProductUpdate = props => {
+function ProductUpdate(props) {
   const { id } = props.match.params;
   const { product } = props.location.state;
   console.log('Producto');
@@ -21,6 +21,10 @@ const ProductUpdate = props => {
 
   const onReset = async e => {
     e.preventDefault();
+    var r = window.confirm('¿Seguro que quieres cancelar?');
+    if (r) {
+      props.history.push(`/productos`);
+    }
   };
 
   const onSubmit = async e => {
@@ -50,7 +54,8 @@ const ProductUpdate = props => {
         body,
         config
       );
-      console.log(res.data);
+      alert('Bien Hecho. El Articulo ha sido modificado exitosamente');
+      props.history.push(`/productos`);
     } catch (err) {
       console.error(err.response.data);
     }
@@ -104,11 +109,11 @@ const ProductUpdate = props => {
           />
         </div>
 
-        <input type='submit' className='btn btn-primary' value='Guardar' />
         <input type='reset' className='btn btn-primary' value='Cancelar' />
+        <input type='submit' className='btn btn-primary' value='Guardar' />
       </form>
     </Fragment>
   );
-};
+}
 
 export default ProductUpdate;

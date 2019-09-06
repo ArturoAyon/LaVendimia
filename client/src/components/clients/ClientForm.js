@@ -1,8 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
-const ClientForm = () => {
+const ClientForm = props => {
   const [formData, setFormData] = useState({
     name: '',
     apellidoPaterno: '',
@@ -18,9 +17,10 @@ const ClientForm = () => {
   const onReset = e => {
     e.preventDefault();
     var r = window.confirm('¿Seguro que quieres cancelar?');
-    if (r) return console.log('cancelado');
+    if (r) {
+      return props.history.push('/clientes');
+    }
   };
-
   const onSubmit = async e => {
     e.preventDefault();
     try {
@@ -32,7 +32,8 @@ const ClientForm = () => {
       const body = JSON.stringify(formData);
 
       const res = await axios.post('/api/clients', body, config);
-      console.log(res.data);
+      alert('Cliente registrado con exito');
+      props.history.push('/clientes');
     } catch (err) {
       console.error(err.response.data);
     }
@@ -90,7 +91,7 @@ const ClientForm = () => {
           />
         </div>
 
-        <input type='submit' className='btn btn-primary' value='Guardar' />
+        <input type='reset' className='btn btn-primary' value='Cancelar' />
 
         <input type='submit' className='btn btn-primary' value='Guardar' />
       </form>

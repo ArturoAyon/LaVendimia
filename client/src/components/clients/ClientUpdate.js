@@ -21,6 +21,10 @@ const ClientUpdate = props => {
 
   const onReset = async e => {
     e.preventDefault();
+    var r = window.confirm('¿Seguro que quieres cancelar?');
+    if (r) {
+      return props.history.push('/clientes');
+    }
   };
 
   const onSubmit = async e => {
@@ -46,7 +50,8 @@ const ClientUpdate = props => {
       const body = JSON.stringify(formData);
 
       const res = await axios.patch(`/api/clients/client/${id}`, body, config);
-      console.log(res.data);
+      alert('Configuracion guardada con exito');
+      props.history.push('/clientes');
     } catch (err) {
       console.error(err.response.data);
     }

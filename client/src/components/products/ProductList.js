@@ -1,6 +1,6 @@
 import React, { Fragment, useState, Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class ProductList extends Component {
   state = {
@@ -23,7 +23,11 @@ class ProductList extends Component {
     const { products } = this.state;
     return (
       <Fragment>
-        <Link to='/productos/form'>
+        <Link
+          to={{
+            pathname: `/productos/form`
+          }}
+        >
           <input
             type='submit'
             className='btn btn-primary right'
@@ -69,4 +73,4 @@ class ProductList extends Component {
   }
 }
 
-export default ProductList;
+export default withRouter(ProductList);
