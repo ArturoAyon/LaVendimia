@@ -263,6 +263,10 @@ img {
 button {
   font: inherit;
 }
+.form input[type='reset'],
+button {
+  font: inherit;
+}
 
 .form .social-input {
   display: flex;
@@ -487,6 +491,11 @@ button {
   color: #aaa;
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
+}
+
+.right {
+  margin-left: 50%;
+  margin-top: 10%;
 }
 
 /* Mobile Styles */

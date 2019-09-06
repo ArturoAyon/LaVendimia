@@ -4,6 +4,9 @@ import './App.css';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import ProductForm from './components/products/ProductForm';
+import ProductList from './components/products/ProductList';
+import ClientList from './components/clients/ClientList';
+import ClientForm from './components/clients/ClientForm';
 
 const App = () => (
   <Router>
@@ -12,7 +15,10 @@ const App = () => (
       <Route exact path='/' component={Landing} />
       <section className='container'>
         <Switch>
-          <Route exact path='/product-form' component={ProductForm} />
+          <Route exact path='/productos/form' component={ProductForm} />
+          <Route exact path='/productos' component={ProductList} />
+          <Route exact path='/clientes/form' component={ClientForm} />
+          <Route exact path='/clientes' component={ClientList} />
         </Switch>
       </section>
     </Fragment>

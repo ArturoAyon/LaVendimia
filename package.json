@@ -17,11 +17,11 @@
     "express": "^4.17.1",
     "express-validator": "^6.2.0",
     "mongoose": "^5.6.12",
+    "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1"
   },
   "devDependencies": {
     "concurrently": "^4.1.2",
     "nodemon": "^1.19.2"
-  },
-  "proxy": "http://localhosto:5000"
+  }
 }
