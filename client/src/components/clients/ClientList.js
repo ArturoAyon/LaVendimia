@@ -1,4 +1,4 @@
-import React, { Fragment, useState, Component } from 'react';
+import React, { Fragment, Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -54,7 +54,16 @@ class ClientList extends Component {
                     )}
                   </td>
                   <td>
-                    <Link to='/'>editar</Link>
+                    <Link
+                      to={{
+                        pathname: `/clientes/actualizar/${client._id}`,
+                        state: {
+                          client
+                        }
+                      }}
+                    >
+                      Editar
+                    </Link>
                   </td>
                 </tr>
               );

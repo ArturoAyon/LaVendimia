@@ -30,7 +30,7 @@ class ProductList extends Component {
             value='Agregar'
           />
         </Link>
-        <h1 className='large text-primary'>Clientes Registrados</h1>
+        <h1 className='large text-primary'>Articulos Registrados</h1>
         <table className='table striped'>
           <thead>
             <tr>
@@ -48,7 +48,16 @@ class ProductList extends Component {
                   <td>{product.description}</td>
                   <td>{product.stock}</td>
                   <td>
-                    <Link to='/'>editar</Link>
+                    <Link
+                      to={{
+                        pathname: `/productos/actualizar/${product._id}`,
+                        state: {
+                          product
+                        }
+                      }}
+                    >
+                      Editar
+                    </Link>
                   </td>
                 </tr>
               );

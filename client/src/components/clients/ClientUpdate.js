@@ -1,20 +1,20 @@
 import React, { Fragment, useState } from 'react';
 import axios from 'axios';
 
-const ProductUpdate = props => {
+const ClientUpdate = props => {
   const { id } = props.match.params;
-  const { product } = props.location.state;
-  console.log('Producto');
-  console.log(product);
+  const { client } = props.location.state;
+  console.log('client');
+  console.log(client);
 
   const [formData, setFormData] = useState({
-    description: '',
-    model: '',
-    cost: '',
-    stock: ''
+    name: '',
+    apellidoPaterno: '',
+    apellidoMaterno: '',
+    RFC: ''
   });
 
-  const { description, model, cost, stock } = formData;
+  const { name, apellidoPaterno, apellidoMaterno, RFC } = formData;
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -31,25 +31,21 @@ const ProductUpdate = props => {
           'Content-Type': 'application/json'
         }
       };
-      if (formData.description === '') {
-        formData.description = product.description;
+      if (formData.name === '') {
+        formData.name = client.name;
       }
-      if (formData.model === '') {
-        formData.model = product.model;
+      if (formData.apellidoPaterno === '') {
+        formData.apellidoPaterno = client.apellidoPaterno;
       }
-      if (formData.cost === '') {
-        formData.cost = product.cost;
+      if (formData.apellidoMaterno === '') {
+        formData.apellidoMaterno = client.apellidoMaterno;
       }
-      if (formData.stock === '') {
-        formData.stock = product.stock;
+      if (formData.RFC === '') {
+        formData.RFC = client.RFC;
       }
       const body = JSON.stringify(formData);
 
-      const res = await axios.patch(
-        `/api/products/product/${id}`,
-        body,
-        config
-      );
+      const res = await axios.patch(`/api/clients/client/${id}`, body, config);
       console.log(res.data);
     } catch (err) {
       console.error(err.response.data);
@@ -58,9 +54,9 @@ const ProductUpdate = props => {
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Editar Articulo</h1>
+      <h1 className='large text-primary'>Editar Cliente</h1>
       <p className='lead'>
-        <i className='fas fa-couch'></i> Articulo
+        <i className='fas fa-couch'></i> Cliente
       </p>
       <form
         className='form'
@@ -70,36 +66,36 @@ const ProductUpdate = props => {
         <div className='form-group'>
           <input
             type='text'
-            placeholder={product.description}
-            name='description'
-            value={description}
+            placeholder={client.name}
+            name='name'
+            value={name}
             onChange={e => onChange(e)}
           />
         </div>
         <div className='form-group'>
           <input
             type='text'
-            placeholder={product.model}
-            name='model'
-            value={model}
+            placeholder={client.apellidoPaterno}
+            name='apellidoPaterno'
+            value={apellidoPaterno}
             onChange={e => onChange(e)}
           />
         </div>
         <div className='form-group'>
           <input
             type='number'
-            placeholder={product.cost}
-            name='cost'
-            value={cost}
+            placeholder={client.apellidoMaterno}
+            name='apellidoMaterno'
+            value={apellidoMaterno}
             onChange={e => onChange(e)}
           />
         </div>
         <div className='form-group'>
           <input
             type='number'
-            placeholder={product.stock}
-            name='stock'
-            value={stock}
+            placeholder={client.RFC}
+            name='RFC'
+            value={RFC}
             onChange={e => onChange(e)}
           />
         </div>
@@ -111,4 +107,4 @@ const ProductUpdate = props => {
   );
 };
 
-export default ProductUpdate;
+export default ClientUpdate;

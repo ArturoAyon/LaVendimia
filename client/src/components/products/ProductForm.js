@@ -61,7 +61,7 @@ const ProductForm = () => {
         <div className='form-group'>
           <input
             type='text'
-            placeholder='model'
+            placeholder='Modelo'
             name='model'
             value={model}
             onChange={e => onChange(e)}
@@ -71,7 +71,7 @@ const ProductForm = () => {
         <div className='form-group'>
           <input
             type='number'
-            placeholder='cost'
+            placeholder='Precio'
             name='cost'
             value={cost}
             onChange={e => onChange(e)}
@@ -81,7 +81,7 @@ const ProductForm = () => {
         <div className='form-group'>
           <input
             type='number'
-            placeholder='stock'
+            placeholder='Existencia'
             name='stock'
             value={stock}
             onChange={e => onChange(e)}
