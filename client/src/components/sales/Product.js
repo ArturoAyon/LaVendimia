@@ -7,7 +7,12 @@ function Product(props) {
       <td>{props.product.model}</td>
 
       <td>
-        <input type='number' name='quantity' onChange={props.changeQuantity} />
+        <input
+          type='number'
+          name='quantity'
+          required
+          onChange={props.changeQuantity}
+        />
       </td>
       <td>
         {' '}
@@ -18,7 +23,7 @@ function Product(props) {
         <label>{props.product.amount} </label>
       </td>
       <td>
-        <button onClick={props.delEvent}>delete</button>
+        <button onClick={props.delEvent}>Quitar</button>
       </td>
     </tr>
   );

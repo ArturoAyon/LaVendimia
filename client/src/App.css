@@ -252,7 +252,7 @@ img {
 .form input[type='date'],
 .form select,
 .form textarea {
-  display: block;
+  display: normal;
   width: 100%;
   padding: 0.4rem;
   font-size: 1.2rem;
@@ -500,6 +500,11 @@ button {
 .right {
   margin-left: 60%;
   margin-top: -3%;
+}
+
+.top {
+  margin-left: 60%;
+  margin-top: 10%;
 }
 
 /* Mobile Styles */
