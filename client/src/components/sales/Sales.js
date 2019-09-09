@@ -1,5 +1,6 @@
 import React, { Fragment, useState, Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import Product from './Product';
 
 class Sales extends Component {
@@ -53,7 +54,7 @@ class Sales extends Component {
     e.preventDefault();
     var r = window.confirm('¿Seguro que quieres cancelar?');
     if (r) {
-      return this.props.history.push('/');
+      return this.props.history.push('/ventas');
     }
   };
 

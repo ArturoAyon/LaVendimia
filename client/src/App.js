@@ -10,6 +10,7 @@ import ClientForm from './components/clients/ClientForm';
 import ProductUpdate from './components/products/ProductUpdate';
 import ClientUpdate from './components/clients/ClientUpdate';
 import ConfigurationForm from './components/configurations/ConfigurationForm';
+import SalesList from './components/sales/SalesList';
 import Sales from './components/sales/Sales';
 
 const App = () => (
@@ -20,13 +21,15 @@ const App = () => (
       <section className='container'>
         <Switch>
           <Route exact path='/configuracion' component={ConfigurationForm} />
+          <Route exact path='/sales' component={Sales} />
           <Route
             exact
             path='/configuracion/form'
             component={ConfigurationForm}
           />
           <Route exact path='/productos/form' component={ProductForm} />
-          <Route exact path='/ventas' component={Sales} />
+          <Route exact path='/ventas' component={SalesList} />
+
           <Route exact path='/productos' component={ProductList} />
           <Route exact path='/clientes/form' component={ClientForm} />
           <Route exact path='/clientes' component={ClientList} />

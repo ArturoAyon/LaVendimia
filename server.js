@@ -13,6 +13,7 @@ app.get('/', (req, res) => res.send('API Running'));
 app.use('/api/clients', require('./routes/api/clients'));
 app.use('/api/products', require('./routes/api/products'));
 app.use('/api/configurations', require('./routes/api/configurations'));
+app.use('/api/sales', require('./routes/api/sales'));
 
 //app.use('/api/config', require('./routes/api/config'));
 /*app.use(function(req, res, next) {
