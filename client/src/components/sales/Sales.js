@@ -12,8 +12,9 @@ class Sales extends Component {
     products: [],
     productsSelected: [],
     configuration: [],
-    client: [],
-    calculations: []
+    client: '',
+    calculations: [],
+    totalSelected: ''
   };
 
   componentDidMount() {
@@ -48,9 +49,16 @@ class Sales extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
+    var body = {
+      clientId: this.state.client._id,
+      clientName: this.state.client.name,
+      total: this.state.totalSelected
+    };
+
+    await axios.post('/api/sales', body);
   };
 
-  handleReset = async e => {
+  handleReset = e => {
     e.preventDefault();
     var r = window.confirm('¿Seguro que quieres cancelar?');
     if (r) {
@@ -142,7 +150,7 @@ class Sales extends Component {
     return +amount.toFixed(2);
   }
   handleChangeRadio(e) {
-    alert(`Presionaste ${e}`);
+    this.setState({ totalSelected: e });
   }
 
   handleChangeProducts(e) {
@@ -309,7 +317,7 @@ class Sales extends Component {
                   <input
                     type='radio'
                     name='radio'
-                    value={this.state.calculations.savings3}
+                    value={this.state.calculations.timelimit3}
                     onChange={e => this.handleChangeRadio(e.target.value)}
                   />
                 </td>
@@ -329,7 +337,7 @@ class Sales extends Component {
                   <input
                     type='radio'
                     name='radio'
-                    value={this.state.calculations.savings6}
+                    value={this.state.calculations.timelimit6}
                     onChange={e => this.handleChangeRadio(e.target.value)}
                   />
                 </td>
@@ -348,7 +356,7 @@ class Sales extends Component {
                   <input
                     type='radio'
                     name='radio'
-                    value={this.state.calculations.savings9}
+                    value={this.state.calculations.timelimit9}
                     onChange={e => this.handleChangeRadio(e.target.value)}
                   />
                 </td>
@@ -367,13 +375,15 @@ class Sales extends Component {
                   <input
                     type='radio'
                     name='radio'
-                    value={this.state.calculations.savings12}
+                    value={this.state.calculations.timelimit12}
                     onChange={e => this.handleChangeRadio(e.target.value)}
                   />
                 </td>
               </tr>
             </tbody>
           </table>
+          <input type='submit' className='btn btn-primary' value='Guardar' />
+          <input type='reset' className='btn btn-primary' value='Cancelar' />
         </form>
       </Fragment>
     );
