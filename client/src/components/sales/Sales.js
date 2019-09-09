@@ -56,6 +56,15 @@ class Sales extends Component {
     };
 
     await axios.post('/api/sales', body);
+    const products = this.state.productsSelected;
+    console.log(products);
+
+    products.map(async product => {
+      const body = {
+        stock: product.stock - product.quantity
+      };
+      await axios.patch(`/api/products/product/${product._id}`, body);
+    });
   };
 
   handleReset = e => {
@@ -137,8 +146,7 @@ class Sales extends Component {
     return +price.toFixed(2);
   }
 
-  calculateTotalAmount() {
-    const products = Object.assign([], this.state.productsSelected);
+  calculateTotalAmount(products) {
     var totalAmount = products.reduce(function(prev, cur) {
       return prev + cur.amount;
     }, 0);
@@ -173,9 +181,8 @@ class Sales extends Component {
   deleteProduct = (index, e) => {
     const products = Object.assign([], this.state.productsSelected);
     products.splice(index, 1);
-
+    this.calculateTotalAmount(products);
     this.setState({ productsSelected: products });
-    this.calculateTotalAmount();
   };
 
   handleChangeQuantity = (index, e) => {
@@ -187,8 +194,8 @@ class Sales extends Component {
     }
     products[index].quantity = e;
     products[index].amount = this.calculateAmount(products[index]);
+    this.calculateTotalAmount(products);
     this.setState({ productsSelected: products });
-    this.calculateTotalAmount();
   };
 
   render() {
