@@ -61,7 +61,7 @@ const ClientUpdate = props => {
     <Fragment>
       <h1 className='large text-primary'>Editar Cliente</h1>
       <p className='lead'>
-        <i className='fas fa-couch'></i> Cliente
+        <i class='fas fa-user'></i> Cliente
       </p>
       <form
         className='form'

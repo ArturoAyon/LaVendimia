@@ -40,6 +40,12 @@ class Sales extends Component {
     axios
       .get('api/configurations')
       .then(response => {
+        if (response.data === undefined || response.data.length == 0) {
+          alert(
+            'Favor de configurar lso parámetros en la pestaña de configuracion'
+          );
+          return this.props.history.push('/configuracion');
+        }
         this.setState({ configuration: response.data });
       })
       .catch(error => {
@@ -51,20 +57,34 @@ class Sales extends Component {
     e.preventDefault();
     var body = {
       clientId: this.state.client._id,
-      clientName: this.state.client.name,
+      clientName: `${this.state.client.name} ${this.state.client.apellidoPaterno} ${this.state.client.apellidoMaterno} `,
       total: this.state.totalSelected
     };
 
-    await axios.post('/api/sales', body);
     const products = this.state.productsSelected;
-    console.log(products);
+
+    if (products === undefined || products.length == 0) {
+      return alert('Favor de selecionar un producto');
+    }
+    products.map(async product => {
+      if (product.quantity == 0) {
+        return alert('La cantidad mínima por producto debe ser 1');
+      }
+    });
+
+    await axios.post('/api/sales', body);
 
     products.map(async product => {
+      if (product.quantity == 0) {
+        return alert('La cantidad mínima por producto debe ser 1');
+      }
       const body = {
         stock: product.stock - product.quantity
       };
+
       await axios.patch(`/api/products/product/${product._id}`, body);
     });
+    return alert('Bien hecho, venta realizada con éxito');
   };
 
   handleReset = e => {
@@ -164,7 +184,7 @@ class Sales extends Component {
   handleChangeProducts(e) {
     const product = JSON.parse(e);
     if (product.stock <= 0) {
-      alert(
+      return alert(
         'El artículo seleccionado no cuenta con existencia, favor de verificar'
       );
     }
@@ -235,8 +255,11 @@ class Sales extends Component {
           <p>
             <label>
               Producto:
-              <select onChange={e => this.handleChangeProducts(e.target.value)}>
-                <option disabled value='' selected hidden>
+              <select
+                className='dropdown'
+                onChange={e => this.handleChangeProducts(e.target.value)}
+              >
+                <option className='select' disabled value='' selected hidden>
                   Selecciona un articulo
                 </option>
                 {products.map(product => {
@@ -316,7 +339,6 @@ class Sales extends Component {
                   TOTAL A PAGAR
                   <legend>{this.state.calculations.timelimit3}</legend>
                 </td>
-
                 <td>
                   SE AHORRA<legend>{this.state.calculations.savings3}</legend>
                 </td>
@@ -325,6 +347,7 @@ class Sales extends Component {
                     type='radio'
                     name='radio'
                     value={this.state.calculations.timelimit3}
+                    required
                     onChange={e => this.handleChangeRadio(e.target.value)}
                   />
                 </td>
@@ -335,7 +358,6 @@ class Sales extends Component {
                 <td>
                   TOTAL A PAGAR
                   <legend>{this.state.calculations.timelimit6}</legend>
-                  <td></td>
                 </td>
                 <td>
                   SE AHORRA<legend>{this.state.calculations.savings6}</legend>
@@ -345,6 +367,7 @@ class Sales extends Component {
                     type='radio'
                     name='radio'
                     value={this.state.calculations.timelimit6}
+                    required
                     onChange={e => this.handleChangeRadio(e.target.value)}
                   />
                 </td>
@@ -364,6 +387,7 @@ class Sales extends Component {
                     type='radio'
                     name='radio'
                     value={this.state.calculations.timelimit9}
+                    required
                     onChange={e => this.handleChangeRadio(e.target.value)}
                   />
                 </td>
@@ -383,6 +407,7 @@ class Sales extends Component {
                     type='radio'
                     name='radio'
                     value={this.state.calculations.timelimit12}
+                    required
                     onChange={e => this.handleChangeRadio(e.target.value)}
                   />
                 </td>

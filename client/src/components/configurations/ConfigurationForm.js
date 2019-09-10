@@ -42,7 +42,7 @@ const ConfigurationForm = props => {
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Configuración</h1>
+      <h1 className='large text-primary'> Configuración</h1>
 
       <form
         className='form'

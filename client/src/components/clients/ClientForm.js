@@ -43,7 +43,7 @@ const ClientForm = props => {
     <Fragment>
       <h1 className='large text-primary'>Registro de Clientes</h1>
       <p className='lead'>
-        <i className='fas fa-couch'></i> Cliente
+        <i class='fas fa-user'></i> Cliente
       </p>
       <form
         className='form'

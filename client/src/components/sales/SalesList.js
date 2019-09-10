@@ -30,11 +30,11 @@ class SalesList extends Component {
         >
           <input
             type='submit'
-            className='btn btn-primary right'
+            className='btn btn-primary top-left'
             value='Nueva Venta'
           />
         </Link>
-        <h1 className='large text-primary'>Ventas Registradas</h1>
+        <h1 className='large text-primary'>Ventas Registradas </h1>
         <table className='table striped'>
           <thead>
             <tr>

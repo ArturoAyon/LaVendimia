@@ -26,7 +26,7 @@ class ClientList extends Component {
         <Link to='/clientes/form'>
           <input
             type='submit'
-            className='btn btn-primary right'
+            className='btn btn-primary top-left'
             value='Agregar'
           />
         </Link>

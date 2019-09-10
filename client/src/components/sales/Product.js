@@ -23,7 +23,9 @@ function Product(props) {
         <label>{props.product.amount} </label>
       </td>
       <td>
-        <button onClick={props.delEvent}>Quitar</button>
+        <button className='btn btn-primary' onClick={props.delEvent}>
+          Quitar
+        </button>
       </td>
     </tr>
   );
