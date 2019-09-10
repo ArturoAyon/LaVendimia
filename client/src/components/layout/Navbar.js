@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+  const date = new Date().toLocaleDateString();
   return (
     <nav className='navbar bg-dark'>
       <ul>
@@ -17,6 +18,8 @@ const Navbar = () => {
         <li>
           <Link to='/configuracion'>Configuración</Link>
         </li>
+
+        <li className='right'>{date}</li>
       </ul>
     </nav>
   );
